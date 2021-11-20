@@ -9,7 +9,7 @@
   <body>
     <h1>00:00</h1>
     <script>
-      (funciton () {
+      (function () {
         if (window.Worker) {
           var worker = new Worker('worker.js');
           worker.addEventListener('message', onMessage);
