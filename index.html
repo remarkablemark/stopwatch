@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stopwatch timer.">
+    <title>00:00</title>
+  </head>
+  <body>
+    <h1>00:00</h1>
+    <script>
+      (funciton () {
+        if (window.Worker) {
+          var worker = new Worker('worker.js');
+          worker.addEventListener('message', onMessage);
+        } else {
+          console.error('Worker is not supported');
+        }
+
+        var heading = document.querySelector('h1');
+
+        /**
+         * Listens to worker message.
+         *
+         * @param {object} event
+         */
+        function onMessage(event) {
+          var time = event.data;
+          document.title = time;
+          heading.innerText = time;
+        }
+      })();
+    </script>
+  </body>
+</html>
